@@ -36,7 +36,7 @@
                                 @error('password')
                                     {{ $message }}
                                 @else
-                                    Tolong isi password anda
+                                    Masukkan password anda
                                 @enderror
                             </div>
                         </div>
