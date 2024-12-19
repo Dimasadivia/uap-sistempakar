@@ -21,7 +21,7 @@
                                 @if ($errors->has('email'))
                                     {{ $errors->first('email') }}
                                 @else
-                                    Tolong isi email anda
+                                    Masukkan email anda
                                 @endif
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                                 @if ($errors->has('password'))
                                     {{ $errors->first('password') }}
                                 @else
-                                    Tolong isi kata sandi anda
+                                    Masukkan kata sandi anda
                                 @endif
                             </div>
                         </div>

@@ -19,7 +19,7 @@
                                 @if ($errors->has('name'))
                                     {{ $errors->first('name') }}
                                 @else
-                                    Tolong isi nama anda
+                                    Masukkan nama anda
                                 @endif
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                                 @if ($errors->has('email'))
                                     {{ $errors->first('email') }}
                                 @else
-                                    Tolong isi email anda
+                                    Masukkan email anda
                                 @endif
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                                     @error('password')
                                         {{ $message }}
                                     @else
-                                        Tolong isi password anda
+                                        Masukkan password anda
                                     @enderror
                                 </div>
                             </div>
