@@ -21,7 +21,7 @@
                                 @if ($errors->has('email'))
                                     {{ $errors->first('email') }}
                                 @else
-                                    Masukkan email anda
+                                    Tolong isi email anda
                                 @endif
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                                 @if ($errors->has('password'))
                                     {{ $errors->first('password') }}
                                 @else
-                                    Masukkan kata sandi anda
+                                    Tolong isi kata sandi anda
                                 @endif
                             </div>
                         </div>
@@ -71,6 +71,8 @@
             </div>
             <div class="mt-3 text-muted text-center">
                 Belum punya akun? <a href="{{ route('register') }}">Daftar disini </a>
+                <br>
+                atau <a href="{{ route('login-as-guest') }}">Masuk sebagai Tamu</a>
             </div>
         </div>
     </div>
