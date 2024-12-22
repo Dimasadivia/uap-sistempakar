@@ -2,7 +2,7 @@
     <div class="container">
         <div class="d-flex justify-content-center">
             <small class="font-monospace">
-                Copyright &copy; {{ date('Y') }}
+                Copyright &copy; {{ date('Y') }} Sistem Pakar
             </small>
         </div>
     </div>

@@ -24,7 +24,6 @@ class Controller extends BaseController
         if (! FacadesGate::allows('asAdmin')) {
             return redirect()->intended(Fortify::redirects('home', route('index')))->with('success', 'Login berhasil, selamat datang '.$user->name.'!');
         }
-
         return redirect()->intended(Fortify::redirects('home', route('admin.beranda')))->with('success-login-admin');
     }
 
@@ -33,22 +32,17 @@ class Controller extends BaseController
         if (! auth('web')->check()) {
             return null;
         }
-
         $lastLogin = auth('web')->user()->last_login_at;
         $diffInMinutes = Carbon::parse($lastLogin)->diffInMinutes();
-
         if ($diffInMinutes < 60) {
             return floor($diffInMinutes).' menit';
         }
-
         if ($diffInMinutes < 1440) {
             $diffInHours = floor($diffInMinutes / 60);
-
             return $diffInHours.' jam';
         }
 
         $diffInDays = floor($diffInMinutes / 1440);
-
         return $diffInDays.' hari';
     }
 }

@@ -6,10 +6,10 @@ use Illuminate\Support\Facades\Schedule;
 
 Schedule::command(RecachingProvinces::class)
     ->daily()
-    ->timezone('Asia/Makassar')
+    ->timezone('Asia/Lampung')
     ->runInBackground();
 
 Schedule::command(RecachingCities::class)
     ->daily()
-    ->timezone('Asia/Makassar')
+    ->timezone('Asia/Lampung')
     ->runInBackground();
