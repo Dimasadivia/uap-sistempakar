@@ -9,8 +9,9 @@ use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [UserController::class, 'index'])->name('index');
 
+
+Route::get('/', [UserController::class, 'index'])->name('index');
 Route::get('/login-as-guest', GuestController::class)->name('login-as-guest')->middleware('guest');
 
 Route::prefix('admin')->group(function () {
@@ -26,17 +27,8 @@ Route::prefix('admin')->group(function () {
         Route::get('edit/{id}', [\App\Http\Controllers\Admin\PenyakitController::class, 'edit'])->name('admin.penyakit.edit');
         Route::get('pdf', [ShowPdfController::class, 'penyakitPdf'])->name('penyakit.pdf');
     });
-    Route::prefix('gejala')->group(function () {
-        Route::middleware(['auth', 'verified', 'can:asAdmin'])->group(function () {
-            Route::post('store', [\App\Http\Controllers\Admin\GejalaController::class, 'store'])->name('admin.gejala.store');
-            Route::put('update/{id}', [\App\Http\Controllers\Admin\GejalaController::class, 'update'])->name('admin.gejala.update');
-            Route::delete('destroy/{id}', [\App\Http\Controllers\Admin\GejalaController::class, 'destroy'])->name('admin.gejala.destroy');
-        });
-        Route::get('/', [\App\Http\Controllers\Admin\GejalaController::class, 'index'])->name('admin.gejala');
-        Route::get('tambah', [\App\Http\Controllers\Admin\GejalaController::class, 'create'])->name('admin.gejala.tambah');
-        Route::get('edit/{id}', [\App\Http\Controllers\Admin\GejalaController::class, 'edit'])->name('admin.gejala.edit');
-        Route::get('pdf', [ShowPdfController::class, 'gejalaPdf'])->name('gejala.pdf');
-    });
+
+
     Route::prefix('rule')->group(function () {
         Route::middleware(['auth', 'verified', 'can:asAdmin'])->group(function () {
             Route::post('store', [\App\Http\Controllers\Admin\RuleController::class, 'store'])->name('admin.rule.store');
@@ -48,6 +40,20 @@ Route::prefix('admin')->group(function () {
         Route::get('edit/{id}', [\App\Http\Controllers\Admin\RuleController::class, 'edit'])->name('admin.rule.edit');
         Route::get('pdf', [ShowPdfController::class, 'rulePdf'])->name('rule.pdf');
     });
+
+    Route::prefix('gejala')->group(function () {
+        Route::middleware(['auth', 'verified', 'can:asAdmin'])->group(function () {
+            Route::post('store', [\App\Http\Controllers\Admin\GejalaController::class, 'store'])->name('admin.gejala.store');
+            Route::put('update/{id}', [\App\Http\Controllers\Admin\GejalaController::class, 'update'])->name('admin.gejala.update');
+            Route::delete('destroy/{id}', [\App\Http\Controllers\Admin\GejalaController::class, 'destroy'])->name('admin.gejala.destroy');
+        });
+        Route::get('/', [\App\Http\Controllers\Admin\GejalaController::class, 'index'])->name('admin.gejala');
+        Route::get('tambah', [\App\Http\Controllers\Admin\GejalaController::class, 'create'])->name('admin.gejala.tambah');
+        Route::get('edit/{id}', [\App\Http\Controllers\Admin\GejalaController::class, 'edit'])->name('admin.gejala.edit');
+        Route::get('pdf', [ShowPdfController::class, 'gejalaPdf'])->name('gejala.pdf');
+    });
+
+
     Route::prefix('histori-diagnosis')->group(function () {
         Route::middleware(['auth', 'verified', 'can:asAdmin'])->group(function () {
             Route::delete('destroy', [\App\Http\Controllers\Admin\HistoriDiagnosisController::class, 'destroy'])->name('admin.diagnosis.destroy');
@@ -57,6 +63,7 @@ Route::prefix('admin')->group(function () {
         Route::get('pdf', [ShowPdfController::class, 'historiDiagnosisPdf'])->name('histori.diagnosis.pdf');
     });
 });
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('home', [\App\Http\Controllers\Controller::class, 'authenticated'])->name('home');
@@ -81,6 +88,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
     });
 });
+
 
 Route::post('/auth/google', [SocialAuthController::class, 'redirectToProvider'])->name('google');
 Route::get('/auth/google/callback', [SocialAuthController::class, 'handleProviderCallback'])
